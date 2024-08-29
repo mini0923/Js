@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <!-- css 연동 -->
+    <link rel="stylesheet" href="./Quiz2.css">
+</head>
+<body>
+  <h1>온라인 쇼핑 장바구니</h1>
+
+  <div class="product_container">
+    <label>
+      상품이름 : 
+      <input type="text" id="name">
+    </label>
+    
+    <label>
+      수량 : 
+      <input type="text" id="quantity">
+    </label>
+
+    <label>
+      가격(개당) : 
+      <input type="text" id="price">
+    </label>
+  </div>
+
+  <button onclick="doAdd()" class="btn">장바구니에 추가</button>
+
+  <h2>장바구니</h2>
+  <ul id="myUl"></ul>
+  
+  <p id="totalQuantity">총 수량 : 0</p>
+  <p id="totalPrice">총 가격 : 0원</p>
+
+  <!-- js 연동 -->
+  <script type="text/javascript" src="./Quiz2.js"></script> 
+
+</body>
+</html>

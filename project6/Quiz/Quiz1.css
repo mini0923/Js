@@ -1,0 +1,46 @@
+html {
+  width: 580px;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+  padding-left: 0px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+input {
+  margin : 5px; /* 입력 필드와 레이블 간의 간격 설정 */
+}
+
+textarea {
+  width: 500px;
+  height: 100px;
+  resize: none;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.info_name {
+  margin-left: 20px;
+}
+
+.border-red {
+  border: 2px solid red;
+}
+
+.text-red {
+  color: red;
+}
+
+#count {
+  text-align: right;
+}
+
+.support_container {
+  display: flex;
+  flex-direction: column;
+}

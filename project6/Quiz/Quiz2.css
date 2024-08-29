@@ -1,0 +1,19 @@
+
+.product_container {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.product_container + input {
+ text-align: left;
+}
+
+.btn {
+  margin-top: 20px
+}
+
+.basket {
+  display: none;
+}

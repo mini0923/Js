@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- css 연동 -->
+  <link rel="stylesheet" href="./Quiz1.css">
+
+</head>
+
+<body>
+  <h1>프런트엔드 개발자 지원서</h1>
+  <p>HTML, CSS, Javascript에 대한 기술적 이해와 경험이 있는 분을 찾습니다.</p>
+  <hr>
+
+  <h3>개인정보</h2>
+    <div>
+      <label>
+        이름 <input type="text" class="info_name" id="name">
+      </label>
+    </div>
+    <div>
+      <label>
+        연락처 <input type="text" oninput="contacts()" id="contact">
+      </label>
+    </div>
+
+
+    <h3>지원 분야</h3>
+    <div class="support_container">
+      <label>
+        <input type="radio" id="checked" name="support"> 웹 퍼블리싱
+      </label>
+      <label>
+        <input type="radio" id="checked" name="support"> 웹 애플리케이션 개발
+      </label>
+      <label>
+        <input type="radio" id="checked" name="support"> 개발 환경 개선
+      </label>
+    </div>
+    
+
+    <h3>지원동기</h3>
+    <div>
+      <textarea id="textarea" oninput="textCounting()"></textarea>
+      <p id="count">0/30 글자</p>
+    </div>
+
+    <button onclick="doSave()" class="btn">접수하기</button>
+    <button onclick="doRewrite()" >다시 쓰기</button>
+
+  <!-- js 연동 -->
+  <script type="text/javascript" src="./Quiz1.js"></script> 
+</body>
+
+</html>
