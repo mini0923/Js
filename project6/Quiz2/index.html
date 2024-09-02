@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니</title>
+    <link rel="stylesheet" href="./main.css">
+    <script src="./main.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <h1>온라인 쇼핑 장바구니</h1>
+
+        <form id="itemForm">
+            <label for="itemName">상품 이름:</label>
+            <input type="text" id="itemName">
+            <br><br>
+
+            <label for="itemQuantity">수량:</label>
+            <input type="text" id="itemQuantity" oninput="validateQuantity(this)">
+            <br><br>
+
+            <label for="itemPrice">가격(개당):</label>
+            <input type="text" id="itemPrice" oninput="validatePrice(this)">
+            <br><br>
+            
+            <!-- submit 버튼 대신 일반버튼으로 생성해야함 
+            submit 버튼을 누르면 폼을 제출하면서 화면이 새로고침되어
+            장바구니를 기록할 수 없음 
+            -->
+            <input type="submit" value="submit버튼">
+            <input type="button" onclick="validateAndAddItem()" value="장바구니에 추가">
+        </form>
+
+        <h2>장바구니</h2>
+        <ul id="cartList">
+             <!-- 상품이 추가될 부분 -->
+        </ul>
+        <p>총 수량: <span id="totalQuantity">0</span></p>
+        <p>총 가격: <span id="totalPrice">0</span>원</p>
+
+    </div>
+</body>
+</html>

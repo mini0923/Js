@@ -2,7 +2,7 @@
 function contacts() {
   let text = document.getElementById("contact");
   let textValue = text.value;
-  let patt = /\d/g;
+  let patt = /[0-9]/g;
 
   if (patt.test(textValue)) {
     text.className = "";

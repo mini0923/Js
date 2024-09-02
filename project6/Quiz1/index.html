@@ -7,7 +7,7 @@
   <title>Document</title>
 
   <!-- css 연동 -->
-  <link rel="stylesheet" href="./Quiz1.css">
+  <link rel="stylesheet" href="./main.css">
 
 </head>
 
@@ -17,16 +17,16 @@
   <hr>
 
   <h3>개인정보</h2>
-    <div>
-      <label>
-        이름 <input type="text" class="info_name" id="name">
-      </label>
-    </div>
-    <div>
-      <label>
-        연락처 <input type="text" oninput="contacts()" id="contact">
-      </label>
-    </div>
+
+    <label class="fixed-label">이름
+       <input type="text" id="name">
+    </label>
+
+    <br>
+
+    <label class="fixed-label">연락처
+       <input type="text" oninput="contacts(this)" id="contact">
+    </label>
 
 
     <h3>지원 분야</h3>
@@ -41,7 +41,7 @@
         <input type="radio" id="checked" name="support"> 개발 환경 개선
       </label>
     </div>
-    
+
 
     <h3>지원동기</h3>
     <div>
@@ -50,10 +50,10 @@
     </div>
 
     <button onclick="doSave()" class="btn">접수하기</button>
-    <button onclick="doRewrite()" >다시 쓰기</button>
+    <button onclick="doRewrite()">다시 쓰기</button>
 
-  <!-- js 연동 -->
-  <script type="text/javascript" src="./Quiz1.js"></script> 
+    <!-- js 연동 -->
+    <script type="text/javascript" src="./main.js"></script>
 </body>
 
 </html>

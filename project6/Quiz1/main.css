@@ -24,10 +24,6 @@ button {
   margin-top: 20px;
 }
 
-.info_name {
-  margin-left: 20px;
-}
-
 .border-red {
   border: 2px solid red;
 }
@@ -43,4 +39,9 @@ button {
 .support_container {
   display: flex;
   flex-direction: column;
+}
+
+.fixed-label {
+  display: inline-block;
+  width: 50px;
 }
