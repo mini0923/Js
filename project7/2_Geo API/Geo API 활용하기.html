@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 장소 목록
+    let tourlist = [
+      {
+        name: "인천광역시청",
+        latitude: 37.4513,
+        longitude: 126.7076,
+      },
+
+      {
+        name: "제주특별자치도청",
+        latitude: 33.4892654,
+        longitude: 126.4983644,
+      },
+
+      {
+        name: "대전광역시청",
+        latitude: 36.350559,
+        longitude: 127.3848017,
+      },
+
+      {
+        name: "서울특별시청",
+        latitude: 37.5666274,
+        longitude: 126.978207,
+      },
+
+    ];
+
+    // 나(사용자)와 위 장소와의 거리 구하기
+    function getDistance(lat1, lon1, lat2, lon2) {
+      var radlat1 = (Math.PI * lat1) / 180;
+      var radlat2 = (Math.PI * lat2) / 180;
+      var radlon1 = (Math.PI * lon1) / 180;
+      var radlon2 = (Math.PI * lon2) / 180;
+      var theta = lon1 - lon2;
+      var radtheta = (Math.PI * theta) / 180;
+      var dist =
+        Math.sin(radlat1) * Math.sin(radlat2) +
+        Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      dist = Math.acos(dist);
+      dist = (dist * 180) / Math.PI;
+      dist = dist * 60 * 1.1515 * 1.609344;
+      return dist; //km단위
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => { 
+        let latitude = position.coords.latitude;    // 위도
+        let longitude = position.coords.longitude;  // 경도
+
+        // i 는 인덱스 : 1 2 3
+        for(let i in tourlist){
+
+          // 장소
+          let tour = tourlist[i];
+
+          // 거리 계산하기 ((사용자) 위도, 경도, (목적지) 위도, 경도)
+          let distance = getDistance(latitude, longitude, tour.latitude, tour.longitude);
+          console.log(tour.name, " : ", distance);
+          
+          // 객체의 새로운 프로퍼티 추가
+          // 객체.키 = 값
+          tour.distance = distance;
+        }
+
+        tourlist.sort(function (a,b){
+          return a.distance - b.distance;
+        });
+        console.log(tourlist);
+      },
+      (err) => { console.log(err);});
+
+  </script>
+
+
+</body>
+
+</html>

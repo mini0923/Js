@@ -1,0 +1,70 @@
+.text-Container{
+  display: flex;
+  margin : 10px;
+}
+
+#inputText {
+  width: 300px;
+  height: 50px;
+  border-radius: 5%;
+  border: 1px solid rgb(194, 194, 194);
+  font-size: 30px;
+}
+
+#plusBtn {
+  margin: 2px 0 0 10px;
+  border-radius: 20%;
+  background-color: rgb(203, 202, 202);
+  font-size: 30px;
+  color: white;
+  border: 1px;
+  width: 50px;
+  height: 50px;
+}
+
+#deleteBtn {
+  margin: 10px 0 0 5px;
+  background-color: rgb(203, 202, 202);
+  border: 3px;
+  color: white;
+  font-size: 15px;
+  width: 100px;
+  height: 30px;
+  border-radius: 15%;
+}
+
+#deleteBtn:focus {
+  background-color: red;
+}
+
+.insert {
+  margin-top: 20px;
+  display: flex;
+}
+
+.insertCheck {
+  width: 25px;
+  height: 25px;
+}
+
+.insertText {
+  width: 250px;
+  height: 25px;
+  background-color: rgb(242, 242, 242);
+  font-size: 20px;
+  border: 2px solid rgb(221, 221, 221);
+  border-radius: 5%;
+
+}
+
+.insertBox {
+  margin-left: 10px;
+  background-color: rgb(203, 202, 202);
+  border: 3px;
+  color: white;
+  border-radius: 15%;
+}
+
+.cancel {
+  text-decoration: line-through;
+}
