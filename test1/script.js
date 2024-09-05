@@ -50,7 +50,6 @@ function validate(f) {
 
 // 주민등록번호 뒷자리 확인 후 성별 체크 함수
 function checkGender() {
-  let sn1 = document.getElementById("sn1").value;
   let sn2 = document.getElementById("sn2").value;
   const maleRadio = document.getElementById("male");
   const femaleRadio = document.getElementById("female");
