@@ -4,6 +4,37 @@ let total = 0;
 // 완료한 일 (전역변수)
 let checked = 0;
 
+// 로컬스토리지 출력 함수
+function loadFromLocalStorage() {
+  let savedList = localStorage.getItem("saved-List");
+
+  if (savedList) {
+    let savedListArray = JSON.parse(savedList);
+    let ul = document.getElementById("toDoList");
+
+    // 저장된 리스트를 화면에 추가
+    savedListArray.forEach(item => {
+      ul.insertAdjacentHTML("beforeend",
+        `<div id="insert">
+        <input type="checkbox" class="insertCheck" name="check" ${item.savedChecked ? "checked" : ""} onclick="doCheck()">
+        <input type="text" value="${item.savedText}" class="insertText" readonly> 
+        <button onclick="doModify(this)" class="modifyBtn">수정</button>
+        <button onclick="doRemove(this)" class="removeBtn">삭제</button>
+        </div>
+        `);
+    });
+
+    // 총 할일 수와 완료된 할일 수를 업데이트
+    total = savedListArray.length;
+    checked = savedListArray.filter(item => item.savedChecked).length;
+    doCount();
+  }
+}
+
+// 페이지 로드 시 로컬스토리지에서 데이터 불러오기
+window.onload = loadFromLocalStorage;
+
+
 function doAdd() {
 
   // 할일 추가
@@ -25,7 +56,9 @@ function doAdd() {
 
     total++; // 총 개수 증가
     doCount();
+    savedLocalStorage();
   }
+
   document.getElementById("inputText").value = ""; // 입력 필드 초기화
 }
 
@@ -74,10 +107,13 @@ function doCancel() {
       textLine.style.textDecoration = "line-through";
       moBtn.style.textDecoration = "line-through";
       rmBtn.style.textDecoration = "line-through";
+      savedLocalStorage();
     } else {
       textLine.style.textDecoration = "";
       moBtn.style.textDecoration = "";
       rmBtn.style.textDecoration = "";
+      savedLocalStorage();
+
     }
   }
 }
@@ -91,25 +127,22 @@ function doCount() {
 
 // 선택 수정
 function doModify(button) {
-  let list = document.getElementsByClassName("inputText");
-  let newList = [];
-  let check = button.parentElement;
-  let checkbox = check.querySelector(".insertCheck");
+  // 해당 클릭된 버튼의 부모, div 내 첫번째 요소를 선택하는 코드(parentElement)
+  let list = button.parentElement.querySelector(".insertText");
 
-  if(!checkbox.checked){
-    alert("체크 후 수정해주세요.");
-  } else if (button.textContent === "수정"){
+  if (button.textContent === "수정") {
     button.textContent = "저장";
-    for (let i = 0; i < list.length; i++) {
-      list[i].readOnly = false;   
-    }
-  } else if (button.textContent === "저장"){
-    button.textContent = "수정";
-    for (let i = 0; i < list.length; i++) {
-      list[i].readOnly = true;
+    list.removeAttribute('readonly', '');
+    savedLocalStorage();    
+  } else if (button.textContent === "저장") {
+    if (list.value.trim() == "") {
+      alert("글자는 써주세요");
+    }else {
+      button.textContent = "수정";
+      list.setAttribute('readonly','readonly');
+      savedLocalStorage();
     }
   }
-    
 }
 
 // 선택 삭제
@@ -126,10 +159,9 @@ function doRemove(button) {
     total--; // 전체 
     checked--;
     doCount();
+    savedLocalStorage(); // 삭제 후 로컬스토리지 저장
+
   }
-
-
-
 }
 
 // 전체 삭제
@@ -141,9 +173,26 @@ function doDeleteAll() {
     alert("지울게 없습니다.")
   } else {
     inputs.forEach(input => input.remove());
+    total = 0;
+    checked = 0;
+    doCount();
+    localStorage.removeItem('saved-List');  // 로컬스토리지 내 데이터 삭제  
   }
+}
 
-  total = 0;
-  checked = 0;
-  doCount();
+// localStorage 저장함수
+function savedLocalStorage() {
+  let saveArr = [];
+  let savedChecked = document.getElementsByClassName("insertCheck");
+  let savedText = document.getElementsByClassName("insertText");
+
+  for (let i = 0; i < savedChecked.length; i++ ){
+    saveArr.push({
+      savedChecked: savedChecked[i].checked,
+      savedText: savedText[i].value
+    });
+  }
+  savedList = saveArr;
+  localStorage.setItem("saved-List", JSON.stringify(savedList));
+
 }
