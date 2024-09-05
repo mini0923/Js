@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <link rel="stylesheet" href="./main.css">
-    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div id="flex-container">
-        <div id="signup-form" class="container">
+        <div id="signup-form-container" class="container">
             <h1>회원가입</h1>
             <p>회원가입을 위해 아래의 정보를 입력해주세요.</p>
-            <hr />/
+            <hr />
 
-            <form>
+            <form id="signup-form">
                 <h4>회원기본정보</h4>
                 <ul>
                     <li>
@@ -25,8 +24,8 @@
                         <input type="password" id="pw" name="pw" />
                     </li>
                     <li>
-                        <label class="fixed-label" for="rePw">비밀번호 확인</label>
-                        <input type="password" id="rePw" name="rePw" />
+                        <label class="fixed-label" for="checkpw">비밀번호 확인</label>
+                        <input type="password" id="checkpw" name="checkpw" />
                     </li>
                     <li>
                         <label class="fixed-label" for="name">이름</label>
@@ -37,11 +36,11 @@
                 <h4>개인정보</h4>
                 <ul>
                     <li>
-                        <label class="fixed-label" for="regi_1">주민등록번호</label>
-                        <input type="text" id="regi_1" name="regi_1" />
+                        <label class="fixed-label" for="sn1">주민등록번호</label>
+                        <input type="text" id="sn1" name="sn1" />
                         -
-                        <input type="text" id="regi_2" name="regi_2" />
-                        <input type="button" value="확인" onclick="numCheck()" />
+                        <input type="text" id="sn2" name="sn2" />
+                        <input type="button" value="확인" onclick="checkGender()" />
                     </li>
                     <li>
                         <label class="fixed-label">성별</label>
@@ -58,12 +57,12 @@
                     <li><label><input type="checkbox" name="interest" value="음악" /> 음악</label></li>
                     <li><label><input type="checkbox" name="interest" value="관심없음" /> 관심없음</label></li>
                 </ul>
-
+                
                 <div>
                     <!-- this는 input을 가리키고, this.form은 input이 속해 있는 form.
                     버튼 클릭 시 form을 전달하면, 바로 안에 있는 요소들을 사용할수 있음
                     -->
-                    <input type="button" value="회원가입" onclick="doJoin(this);" />
+                    <input type="button" value="회원가입" onclick="validate(this.form);" />
                     <input type="reset" value="다시 쓰기" />
                 </div>
             </form>
@@ -71,10 +70,32 @@
 
         <!-- 새로 추가된 div -->
         <div id="info-table" class="container">
-            <h1>회원정보 목록</h1>
-            <p>아래는 회원표입니다.</p>
-            <hr />
-                    
+            <h1>회원정보 목록</h1>            
+            
+            <br>
+
+            <p>검색</p>
+            아이디 검색 : <input type="text" id="searchId"> <button onclick="search()"> 검색 </button> <button onclick="reset()"> 초기화 </button>
+            <br>
+            <br>
+            이름 검색 : <input type="text" id="searchName"> <button onclick="search()"> 검색 </button> <button onclick="reset()"> 초기화 </button>
+            <br>
+            <br>
+            성별 선택 : 
+              <label><input type="radio" id="selectGender" name="gender" value="M" /> 남
+              <label><input type="radio" id="selectGender" name="gender" value="F" /> 여</label>
+              <button onclick="search()"> 검색 </button> <button onclick="reset()"> 초기화 </button>
+            <br>
+            <br>
+              <label><input type="checkbox" name="interest" value="여행" /> 여행</label>
+              <label><input type="checkbox" name="interest" value="영화" /> 영화</label>
+              <label><input type="checkbox" name="interest" value="독서" /> 독서</label>
+              <label><input type="checkbox" name="interest" value="음악" /> 음악</label>
+              <label><input type="checkbox" name="interest" value="관심없음" /> 관심없음</label>
+              <button onclick="search()"> 검색 </button> <button onclick="reset()"> 초기화 </button>
+            <hr>
+
+
             <table border="1" style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr>
@@ -90,5 +111,6 @@
             </table>
         </div>
     </div>
+    <script src="./script.js" defer></script>
 </body>
 </html>
